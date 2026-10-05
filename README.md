@@ -1,6 +1,7 @@
-# ☀️ SolaX X1 Boost → Home Assistant, with a €6 Wi-Fi board
+# ☀️ SolaX X1 G3 → Home Assistant, with a €6 Wi-Fi board
 
-This project reads a SolaX X1 Boost solar inverter over its RS485 port and puts the
+This project reads a SolaX X1 Boost, Mini or Air (generation 3) solar inverter over its
+RS485 port and puts the
 numbers in [Home Assistant](https://www.home-assistant.io/): power per panel string, grid
 voltage, today's and lifetime production, and any fault the inverter reports. You don't
 need a SolaX cloud account or their Wi-Fi dongle. A Wemos D1 mini and a €2 RS485 module
@@ -64,14 +65,20 @@ I've tested it on an X1 Boost G3 (serial number `XB33…`) with ESPHome 2026.9.1
 Assistant 2026.9. X1 Boost G3 serial numbers usually start with `XB3`, `XAU`, `XBE` or
 `XBU`.
 
-The X1 Mini G3 (`XM3…`) and X1 Air G3 should work too. The
-[SolaX Modbus integration](https://github.com/wills106/homeassistant-solax-modbus) reads
-all three with the same register addresses, but I haven't been able to try them. If you
-have one, please [let me know](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose)
-how it went.
+The X1 Mini G3 should work as well. The
+[SolaX Modbus integration](https://github.com/wills106/homeassistant-solax-modbus) reads it
+with exactly the same register addresses, and its users run it with Mini G3 serial
+numbers starting with `XM3`, `XM2`, `XMA` and `XAT`.
 
-Generation 4 inverters (`XB4…`) use different addresses, so this config won't work on
-them. Hybrid (battery) inverters, the three-phase X3 range and firmware without Modbus
+The X1 Air G3 probably works too. SolaX groups it with the Boost and Mini, but I haven't
+found anyone who has actually tried it.
+
+I've only been able to test the Boost myself, so if you have a Mini or an Air, please
+[let me know](https://github.com/benjaminvdb/esphome-solax-x1-g3/issues/new/choose) how it
+went.
+
+Generation 4 inverters (`XB4…`, `XM4…`) use different addresses, so this config won't
+work on them. Hybrid (battery) inverters, the three-phase X3 range and firmware without Modbus
 support aren't covered either. For those, have a look at the
 [SolaX Modbus integration](https://github.com/wills106/homeassistant-solax-modbus) or
 [syssi/esphome-solax-x1-mini](https://github.com/syssi/esphome-solax-x1-mini).
@@ -107,5 +114,5 @@ that project for the register research and for sharing SolaX's protocol document
 The configuration and scripts are [MIT](LICENSE). The documentation and images are
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), so you can share and adapt
 them as long as you give credit. Questions and improvements go in the
-[issues](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues); see
+[issues](https://github.com/benjaminvdb/esphome-solax-x1-g3/issues); see
 [CONTRIBUTING.md](CONTRIBUTING.md).

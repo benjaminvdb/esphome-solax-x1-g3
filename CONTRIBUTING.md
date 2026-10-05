@@ -3,7 +3,7 @@
 Thanks for helping out. A note that a step confused you is as useful as a pull request.
 
 If you have a question or something doesn't work, open an
-[issue](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose). The form
+[issue](https://github.com/benjaminvdb/esphome-solax-x1-g3/issues/new/choose). The form
 asks for your inverter model, serial number prefix, firmware version, RS485 module and a
 log, which is what I need to help.
 

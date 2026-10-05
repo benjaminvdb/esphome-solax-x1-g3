@@ -42,7 +42,7 @@ The inverter answers, but refuses one of the requests ("illegal data address"). 
 mean different firmware or a different model, so check
 [Will it work with my inverter?](../README.md#will-it-work-with-my-inverter) first.
 
-If it is a G3 model, please [open an issue](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose)
+If it is a G3 model, please [open an issue](https://github.com/benjaminvdb/esphome-solax-x1-g3/issues/new/choose)
 with the full log line. The configuration
 [reads several registers in one go](how-it-works.md#one-request-instead-of-six), and
 removing `reuse_previous_range: true` from the sensor right after the address in the
@@ -83,7 +83,7 @@ CH340 driver. If none of that helps, choose **Manual download** and install the 
 
 ## 🙋 Still stuck?
 
-[Open an issue](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose).
+[Open an issue](https://github.com/benjaminvdb/esphome-solax-x1-g3/issues/new/choose).
 The form asks for your inverter model, the first three characters of its serial number,
 the firmware version, which RS485 module you used, and about a minute of the device log.
 That's usually enough for me to help.
