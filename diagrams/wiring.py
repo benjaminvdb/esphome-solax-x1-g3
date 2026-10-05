@@ -101,7 +101,7 @@ add(
     '<desc id="desc">Network cable pin 4 (blue) goes to A, pin 5 (blue-white) goes to B '
     "and optionally pin 3 (green-white) goes to GND on the RS485 module. On the module, VCC goes to "
     "3V3, GND to GND, DI to D7, RO to D6, and DE and RE are joined and go to D5 on the "
-    "Wemos D1 mini. The D1 mini is powered over USB.</desc>"
+    "Wemos D1 mini. The D1 mini is powered over USB, from the inverter's USB port or a phone charger.</desc>"
 )
 add(f'<rect width="{W}" height="{H}" fill="#ffffff"/>')
 
@@ -169,7 +169,7 @@ add(f'<rect x="{DX0}" y="200" width="{DX1 - DX0}" height="400" rx="14" fill="#0b
 add(f'<rect x="{DX0 + 50}" y="214" width="{DX1 - DX0 - 100}" height="34" rx="4" fill="#d9d9d9"/>')
 text((DX0 + DX1) / 2, 236, "Wi-Fi chip", size=12, anchor="middle", fill="#333")
 add(f'<rect x="{(DX0 + DX1) / 2 - 26}" y="586" width="52" height="34" rx="5" fill="#bdbdbd" stroke="#555"/>')
-text((DX0 + DX1) / 2, 645, "USB: power from a phone charger", size=13, anchor="middle", fill="#555")
+text((DX0 + DX1) / 2, 645, "USB: power from the inverter's USB port", size=13, anchor="middle", fill="#555")
 text((DX0 + DX1) / 2, 160, "3 · Wemos D1 mini", size=17, weight="700", anchor="middle")
 text((DX0 + DX1) / 2, 182, "the small Wi-Fi computer", size=13, anchor="middle", fill="#555")
 

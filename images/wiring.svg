@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1240" height="800" viewBox="0 0 1240 800" role="img" aria-labelledby="title desc">
 <title id="title">Wiring diagram: SolaX inverter to RS485 module to Wemos D1 mini</title>
-<desc id="desc">Network cable pin 4 (blue) goes to A, pin 5 (blue-white) goes to B and optionally pin 3 (green-white) goes to GND on the RS485 module. On the module, VCC goes to 3V3, GND to GND, DI to D7, RO to D6, and DE and RE are joined and go to D5 on the Wemos D1 mini. The D1 mini is powered over USB.</desc>
+<desc id="desc">Network cable pin 4 (blue) goes to A, pin 5 (blue-white) goes to B and optionally pin 3 (green-white) goes to GND on the RS485 module. On the module, VCC goes to 3V3, GND to GND, DI to D7, RO to D6, and DE and RE are joined and go to D5 on the Wemos D1 mini. The D1 mini is powered over USB, from the inverter's USB port or a phone charger.</desc>
 <rect width="1240" height="800" fill="#ffffff"/>
 <text x="40" y="50" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" font-weight="700" text-anchor="start" fill="#1a1a1a">How to wire it</text>
 <text x="40" y="80" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" font-weight="normal" text-anchor="start" fill="#444">Three parts, eight wires (one optional). Every wire is labelled; the colours only help.</text>
@@ -62,7 +62,7 @@
 <rect x="950" y="214" width="120" height="34" rx="4" fill="#d9d9d9"/>
 <text x="1010.0" y="236" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" text-anchor="middle" fill="#333">Wi-Fi chip</text>
 <rect x="984.0" y="586" width="52" height="34" rx="5" fill="#bdbdbd" stroke="#555"/>
-<text x="1010.0" y="645" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#555">USB: power from a phone charger</text>
+<text x="1010.0" y="645" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#555">USB: power from the inverter's USB port</text>
 <text x="1010.0" y="160" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="700" text-anchor="middle" fill="#1a1a1a">3 · Wemos D1 mini</text>
 <text x="1010.0" y="182" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="normal" text-anchor="middle" fill="#555">the small Wi-Fi computer</text>
 <circle cx="900" cy="260" r="8" fill="#cfcfcf" stroke="#333" stroke-width="1.5"/>

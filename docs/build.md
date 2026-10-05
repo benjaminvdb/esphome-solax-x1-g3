@@ -1,138 +1,118 @@
 # 🔧 Step 1: Build the circuit
 
-In this step you connect the RS485 module to the Wemos D1 mini. The inverter cable comes
-later, in [step 2](inverter.md), so you can do this at your desk.
-
-| | |
-|---|---|
-| ⏱️ **Time** | 15–30 minutes |
-| 🧰 **You'll need** | the D1 mini, the RS485 module and six jumper wires |
-| 🎯 **Result** | two boards connected with six wires, ready for the inverter cable |
+Here you connect the RS485 module to the Wemos D1 mini. The inverter cable comes later,
+in [step 2](inverter.md), so you can do this at your desk. It takes 15 to 30 minutes and
+you need the D1 mini, the RS485 module and six jumper wires.
 
 > [!IMPORTANT]
-> **Unplug the D1 mini from USB while you connect wires.** Nothing here is dangerous
-> (everything runs on 3.3 volts), but a wire touching the wrong pin while powered can
-> damage a board.
+> Keep the D1 mini unplugged from USB while you connect wires. Everything runs on 3.3
+> volts, so it isn't dangerous, but a loose wire on the wrong pin can damage a board.
 
 ## 💡 Why two boards?
 
-- The **D1 mini** talks in short pulses of 3.3 volts: one wire for sending, one for
-  receiving.
-- The **inverter** talks **RS485**: it sends data over a *pair* of wires, as the
-  difference between them. That keeps the signal clean, even over long cables.
-- The **RS485 module** translates between the two. The inverter uses its pair of wires
-  for both directions, so the module also needs to know when to listen and when to talk.
-  That's the job of the *send/receive switch* wire.
+The D1 mini sends and receives data as 3.3-volt pulses, with one wire for each direction.
+The inverter speaks RS485 instead: it sends data over a pair of wires as the difference
+between them, which keeps the signal clean over long cables. The RS485 module translates
+between the two.
+
+The inverter uses the same pair of wires for talking and listening, so the module also
+needs to know which of the two it should do. A third wire from the D1 mini, which I'll
+call the send/receive switch, takes care of that.
 
 <a name="which-rs485-module"></a>
 
 ## 🛒 Which RS485 module?
 
-You'll find two kinds. Both are a small board with a chip, a row of pins on each side and
-a screw terminal marked **A** and **B**. They have the same pin names, so the wiring is
-identical.
+You'll come across two kinds. Both are a small board with a chip, a row of pins on each
+side and a screw terminal marked A and B, and both have the same pin names, so the wiring
+is the same.
 
-| Module | Made for | Verdict |
-|---|---|---|
-| **MAX3485** or **SP3485** | 3.3 volts, like the D1 mini | ✅ **Recommended.** Fits without any compromise. |
-| Blue **MAX485** (very common) | 5 volts, officially | 👍 **Works.** Many people, including the author, run it at 3.3 volts without problems: a short cable at 9600 bits per second asks very little of it. |
+A MAX3485 or SP3485 module is the best fit. It's made for 3.3 volts, like the D1 mini.
 
-**Don't power any module from 5 V.** Its data output would then send 5 volts into the
-D1 mini, which is built for 3.3.
+The blue MAX485 module is easier to find. Its chip is officially specified for 5 volts,
+but I run mine at 3.3 V without problems, and so do many others: a short cable at 9600
+bits per second doesn't ask much of it.
 
-**The tiny parts already on the module:** the blue module carries a few resistors of its
-own. Four keep its pins at a defined level when nothing drives them, two keep A and B in a
-known state while nobody is sending, and one of 120 Ω between A and B (often labelled
-*R7*) stops signals echoing at the end of the cable. **Leave them all in place.** R7
-belongs at each *end* of an RS485 cable, and with only the inverter and your module on
-the cable, your module is an end.
+Whichever you buy, power it from the D1 mini's 3V3 pin and not from 5V. At 5 volts the
+module would send 5-volt signals back into the D1 mini, which is built for 3.3.
+
+The blue module already has a handful of tiny resistors on it. Four keep its pins at a
+defined level when nothing drives them, two hold A and B in a known state while nobody
+is talking, and one 120 Ω resistor between A and B (often labelled R7) stops signals
+from echoing at the end of the cable. Leave them all where they are. R7 belongs at each
+end of an RS485 cable, and with only the inverter and your module on it, your module is
+one of the ends.
 
 ## 🔌 Connect the wires
 
-Find the pin names printed on both boards. Hold the D1 mini with the Wi-Fi chip at the
-top and the USB socket at the bottom: its pins are then in the same order as in the
-picture.
+Hold the D1 mini with the Wi-Fi chip at the top and the USB socket at the bottom. Its
+pins are then in the same order as in the diagram.
 
 ![Wiring diagram](../images/wiring.svg)
 
-| # | RS485 module | D1 mini | What it does |
-|:-:|---|---|---|
-| 1 | **VCC** | **3V3** | Power for the module (3.3 volts). |
-| 2 | **GND** | **GND** | Ground: the shared 0-volt reference. Every part needs this. |
-| 3 | **DI** | **D7** | Data *in* to the module: what the D1 mini sends. |
-| 4 | **RO** | **D6** | Data *out* of the module: what the D1 mini receives. |
-| 5 | **DE** | **D5** | *Driver enable*: talk. |
-| 6 | **RE** | **D5** | *Receiver enable*: listen. DE and RE share one D1 mini pin. |
+| RS485 module | D1 mini | What the wire does |
+|---|---|---|
+| VCC | 3V3 | Powers the module with 3.3 volts. |
+| GND | GND | Ground, the shared 0-volt reference. |
+| DI | D7 | Carries data from the D1 mini into the module (DI stands for *driver input*). |
+| RO | D6 | Carries data from the module to the D1 mini (*receiver output*). |
+| DE | D5 | Tells the module to talk (*driver enable*). |
+| RE | D5 | Tells the module to listen (*receiver enable*). |
 
-### Joining DE and RE
-
-Both go to **D5**. With jumper wires:
-
-1. Connect **DE** to **RE** on the module itself, with a short wire or a tiny bridge of
-   solder.
-2. Run one wire from either of them to **D5**.
-
-When D5 is high, the module talks; when it's low, the module listens. ESPHome switches
-it for you.
+DE and RE both go to D5. The easiest way is to connect DE to RE on the module with a
+short wire or a small blob of solder, then run one wire from either of them to D5. When
+ESPHome sets D5 high, the module talks; when it sets it low, the module listens.
 
 ### ✅ Check your work
 
-- [ ] On the D1 mini, exactly five pins are used: **D5, D6, D7, 3V3** and **GND**.
-- [ ] On the module: **VCC, GND, DI, RO, DE** and **RE**, with DE and RE joined.
-- [ ] The screw terminal (**A**, **B**) is still empty. It's for the inverter cable.
+- [ ] Five pins on the D1 mini are in use: D5, D6, D7, 3V3 and GND.
+- [ ] On the module, VCC, GND, DI, RO, DE and RE are connected, with DE and RE joined.
+- [ ] The screw terminal is still empty. That's where the inverter cable goes.
 
-### Common mistakes
-
-| Mistake | How to spot it | Fix |
-|---|---|---|
-| **D6 and D7 swapped** | Later, the inverter never answers. | Follow the table: **DI ← D7**, **RO → D6**. Swapping them back can't damage anything. |
-| **5V instead of 3V3** | The power wire sits next to **GND** on the right-hand side. | Move it to **3V3**, on the left-hand side. |
+Two mistakes are easy to make. D6 and D7 get swapped because the names look so alike;
+if the inverter never answers later, swap them back, which can't damage anything. And
+the 5V pin sits next to GND on the right-hand side, while 3V3 is at the bottom left. The
+module's VCC wire belongs on 3V3.
 
 ## 🪛 Solder or not?
 
-Jumper wires are fine for testing. For something that will hang on a wall for years,
-soldering is more reliable, because jumper wires can work loose.
+Jumper wires are fine for trying things out, but they can work loose over the years, so
+for something that will hang on a wall soldering is more reliable. Most D1 minis come
+with pin headers you solder on yourself; if yours already has them, you can start with
+jumper wires and no soldering at all. For a sturdier build, solder both boards onto a
+small piece of perfboard (board with holes) with short wires.
 
-| Option | Soldering | Notes |
-|---|---|---|
-| **Pin headers + jumper wires** | Only the headers, if they aren't attached yet | Quickest to start with. |
-| **Perfboard** (a board with holes) | Yes | Both boards and short wires on one board; tidy and sturdy. |
-| **[enri.nl Modbus Shield](https://enri.nl/pcb/?page=modbus)** | Headers only | A printed board with sockets for the D1 mini and a MAX485 module, with exactly this wiring (3.3 V, D5, D6, D7). This project started on it. Tidy, but not required. |
+I started on the [enri.nl Modbus Shield](https://enri.nl/pcb/?page=modbus), a printed
+board with sockets for the D1 mini and a MAX485 module. It uses exactly this wiring, at
+3.3 V, on D5, D6 and D7. It makes for a tidy build, but you don't need it.
 
 <details>
-<summary><b>Optional: two protective resistors</b> (the dashed boxes in the diagram)</summary>
+<summary>Optional: two protective resistors (the dashed boxes in the diagram)</summary>
 
 <br>
 
-The enri.nl shield adds a 1 kΩ resistor (bands: brown, black, red) in the **DI** wire and
-another in the **RO** wire. You can do the same: put the resistor in the middle of the
-wire, *in series*, so the signal passes through it.
+The enri.nl shield has a 1 kΩ resistor (bands: brown, black, red) in the DI wire and
+another in the RO wire. You can add them too: cut the wire and put the resistor in
+between, so the signal passes through it.
 
-**What they do:**
+While everything is wired and configured correctly, they do nothing; at 9600 bits per
+second the signal doesn't notice them. They come into play when both sides send on the
+same wire at once, which happens if D6 and D7 are swapped in the configuration or for a
+moment while the D1 mini starts up. The resistors then limit the current to a few
+milliamps, which can't damage anything.
 
-- **While everything is right, nothing.** At 9600 bits per second the signal doesn't
-  notice them.
-- **When two sides send on the same wire at once, they limit the current** to a few
-  thousandths of an ampere, which can't damage anything. That can happen if D6 and D7
-  are swapped in the configuration, or for a moment while the D1 mini starts up.
-
-**What they don't do:**
-
-- **They don't make a 5-volt module safe.** Powered from 5 V, a MAX485 module's RO pin
-  sends 5 volts towards the D1 mini. The ESP8266 datasheet allows at most 3.6 V on a pin,
-  and a resistor doesn't change that. Power the module from **3V3**, as shown.
-- **They don't protect the cable side** against static or lightning surges. For a short
-  indoor cable that's rarely a concern; for long or outdoor cables, use an isolated RS485
-  module (see [Safety](inverter.md#safety)).
+They won't make a module powered from 5 V safe. Its RO pin would still put 5 volts on the
+D1 mini, and the ESP8266 datasheet allows at most 3.6 V on a pin. They also don't protect
+the cable side against static or lightning surges. For a short cable indoors that's
+rarely a concern; for a long or outdoor cable, use an isolated RS485 module (see
+[Safety](inverter.md#safety)).
 
 </details>
 
 ## 📦 Put it in a box
 
-Keep the boards dry and out of direct sun, for example in a small plastic project box
-next to the inverter, with the network cable and USB cable entering through a hole. Is
-the inverter outside? Then put the D1 mini indoors and run a longer network cable to it.
+A small plastic project box next to the inverter works well, with the network cable and
+a short USB cable from the inverter's USB port coming in through a hole. Keep it dry and out of direct sun. If the
+inverter is outside, put the D1 mini indoors and run a longer network cable to it.
 
----
-
-**Next:** [🔆 Step 2: Prepare the inverter and cable](inverter.md) →
+Next: [Step 2: Prepare the inverter and cable](inverter.md)
