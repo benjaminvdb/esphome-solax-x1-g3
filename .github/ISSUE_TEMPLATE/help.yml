@@ -1,0 +1,35 @@
+name: Help, it doesn't work (yet)
+description: Ask for help with building or installing.
+labels: [help]
+body:
+  - type: markdown
+    attributes:
+      value: "Sorry it isn't working yet! Did you check [Troubleshooting](https://github.com/benjaminvdb/solax-esphome/blob/main/docs/troubleshooting.md)? The details below help us help you."
+  - type: input
+    id: inverter
+    attributes:
+      label: Inverter model and serial number prefix
+      placeholder: "X1 Boost G3, XB3…"
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Inverter firmware (ARM / DSP version from the inverter menu)
+  - type: input
+    id: module
+    attributes:
+      label: RS485 module
+      placeholder: "blue MAX485 module, MAX3485 module, enri.nl shield…"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Device log
+      description: "ESPHome Builder → your device → Logs. Copy about one minute, starting at the restart."
+      render: text
