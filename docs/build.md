@@ -77,9 +77,18 @@ soldering is more reliable: jumper wires can work loose. Some options:
 - **A small piece of perfboard** (board with holes) with both boards and short wires.
 - **A ready-made shield:** the [enri.nl Modbus Shield](https://enri.nl/pcb/?page=modbus)
   this project started on is a printed board with sockets for the D1 mini and a MAX485
-  module, using exactly these pins (D5, D6 and D7). It adds two 1 kΩ resistors on the data
-  lines. It makes tidy connections, but it isn't required: the wiring above does the same
-  job.
+  module. It uses exactly the wiring above: the module runs on 3.3 V, with D5, D6 and D7.
+  It makes tidy connections, but it isn't required.
+
+### Optional: two protective resistors
+
+The enri.nl shield adds a 1 kΩ resistor (brown-black-red bands) in the **DI** wire and
+another in the **RO** wire. You can do the same: put the resistor in the middle of the wire,
+in series, so the signal passes *through* it. The resistors change nothing while
+everything is right. They're a safety net for when two sides try to send on the same wire
+at once, for example if D6 and D7 are swapped in the configuration, or while the D1 mini
+is starting up: then they keep the current to a few milliamps, which can't damage
+anything. At this speed they don't affect the data at all.
 
 ## Put it in a box
 
