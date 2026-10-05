@@ -60,6 +60,16 @@ def striped_wire(points, color):
     add(f'<path d="M ' + " L ".join(f"{x} {y}" for x, y in points) + f'" fill="none" stroke="{color}" stroke-width="6" stroke-dasharray="12 8"/>')
 
 
+def resistor(x, y, color, label="1 kΩ (optional)"):
+    """An optional series resistor: a zigzag on the wire, drawn dashed-outlined."""
+    add(f'<rect x="{x - 26}" y="{y - 12}" width="52" height="24" rx="4" fill="#ffffff" '
+        f'stroke="{color}" stroke-width="1.5" stroke-dasharray="4 3"/>')
+    pts = " ".join(f"{x - 20 + i * 5},{y + (0 if i in (0, 8) else (-7 if i % 2 else 7))}" for i in range(9))
+    add(f'<polyline points="{pts}" fill="none" stroke="{color}" stroke-width="2.5" '
+        f'stroke-linejoin="round"/>')
+    text(x, y - 17, label, size=11, anchor="middle", fill="#555")
+
+
 def dot(x, y, color):
     add(f'<circle cx="{x}" cy="{y}" r="7" fill="{color}"/>')
 
@@ -189,8 +199,10 @@ dot(690, y_d5, SWITCH)
 label_box(790, y_d5, "D5 → DE + RE", SWITCH)
 wire([(MX1, right_pins["RO"]), (DX0, y_d6)], RECEIVE, arrow_at=((870, y_d6), "right"))
 label_box(790, y_d6, "RO → D6", RECEIVE)
+resistor(700, y_d6, RECEIVE)
 wire([(MX1, right_pins["DI"]), (DX0, y_d7)], SEND, arrow_at=((670, y_d7), "left"))
 label_box(790, y_d7, "D7 → DI", SEND)
+resistor(712, y_d7, SEND, label="")
 wire([(MX1, right_pins["VCC"]), (720, right_pins["VCC"]), (720, y_3v3), (DX0, y_3v3)], POWER)
 label_box(810, y_3v3, "3V3 → VCC", POWER)
 
@@ -216,10 +228,11 @@ legend = [
     (RECEIVE, "data from the inverter to the D1 mini"),
     (SWITCH, "send/receive switch"),
     (CABLE_BLUE, "network cable wire (striped = white with colour)"),
+    ("#555555", "dashed box: optional 1 kΩ resistor (see the build guide)"),
 ]
 for i, (color, s) in enumerate(legend):
-    col, row = divmod(i, 2)
-    x, y = 40 + col * 400, 730 + row * 26
+    col, row = divmod(i, 3)
+    x, y = 40 + col * 400, 726 + row * 22
     add(f'<line x1="{x}" y1="{y}" x2="{x + 28}" y2="{y}" stroke="{color}" stroke-width="5" stroke-linecap="round"/>')
     text(x + 38, y + 5, s, size=13, fill="#333")
 

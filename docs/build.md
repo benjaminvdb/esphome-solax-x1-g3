@@ -33,6 +33,13 @@ side, and a screw terminal marked A and B.
 
 Both modules have the same pin names, so the wiring below is identical.
 
+**The tiny parts on the module:** the blue module already carries a few resistors of its
+own: four that keep its pins at a defined level when nothing drives them, two that keep A
+and B in a known state while nobody is sending, and one of 120 Ω between A and B (often
+labelled R7) that stops signals echoing at the end of the cable. Leave them all in place.
+R7 belongs at each *end* of an RS485 cable, and with only the inverter and your module on
+the cable, your module is an end.
+
 ## Connect the wires
 
 Find the pin names printed on both boards. The D1 mini's pins are in the same order as in
@@ -83,12 +90,25 @@ soldering is more reliable: jumper wires can work loose. Some options:
 ### Optional: two protective resistors
 
 The enri.nl shield adds a 1 kΩ resistor (brown-black-red bands) in the **DI** wire and
-another in the **RO** wire. You can do the same: put the resistor in the middle of the wire,
-in series, so the signal passes *through* it. The resistors change nothing while
-everything is right. They're a safety net for when two sides try to send on the same wire
-at once, for example if D6 and D7 are swapped in the configuration, or while the D1 mini
-is starting up: then they keep the current to a few milliamps, which can't damage
-anything. At this speed they don't affect the data at all.
+another in the **RO** wire, shown as dashed boxes in the diagram. You can do the same:
+put the resistor in the middle of the wire, *in series*, so the signal passes through it.
+
+What they do:
+
+- **While everything is right, nothing.** At 9600 bits per second the signal doesn't
+  notice them.
+- **When two sides send on the same wire at once, they limit the current** to a few
+  thousandths of an ampere, which can't damage anything. That can happen if D6 and D7 are
+  swapped in the configuration, or for a moment while the D1 mini starts up.
+
+What they don't do:
+
+- **They don't make a 5-volt module safe.** If you power a MAX485 module from 5 V, its
+  RO pin sends 5 volts towards the D1 mini. The ESP8266 datasheet allows at most 3.6 V on
+  a pin, and a resistor doesn't change that. Power the module from **3V3**, as shown.
+- **They don't protect the cable side** against static or lightning surges. For a short
+  indoor cable that's rarely a concern; for long or outdoor cables, use an isolated RS485
+  module (see [Safety](inverter.md#safety)).
 
 ## Put it in a box
 
