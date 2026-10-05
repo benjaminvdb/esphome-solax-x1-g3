@@ -74,6 +74,6 @@ an old configuration briefly reported 0. To fix the history:
 
 ## Still stuck?
 
-Open an [issue](https://github.com/benjaminvdb/solax-esphome/issues/new/choose) and include: your inverter model and serial
+Open an [issue](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose) and include: your inverter model and serial
 number prefix (the first three characters, e.g. `XB3`), the inverter's firmware version,
 which RS485 module you used, and the device log from about one minute after it starts.

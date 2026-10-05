@@ -4,7 +4,7 @@ labels: [help]
 body:
   - type: markdown
     attributes:
-      value: "Sorry it isn't working yet! Did you check [Troubleshooting](https://github.com/benjaminvdb/solax-esphome/blob/main/docs/troubleshooting.md)? The details below help us help you."
+      value: "Sorry it isn't working yet! Did you check [Troubleshooting](https://github.com/benjaminvdb/esphome-solax-x1-boost/blob/main/docs/troubleshooting.md)? The details below help us help you."
   - type: input
     id: inverter
     attributes:

@@ -1,8 +1,9 @@
-# ESPHome configuration for SolaX X1 Boost, X1 Mini and X1 Air (generation 3)
-# solar inverters, read over RS485 (Modbus RTU) with a Wemos D1 mini.
+# ESPHome configuration for the SolaX X1 Boost (generation 3) solar inverter, read
+# over RS485 (Modbus RTU) with a Wemos D1 mini. Tested on an X1 Boost G3; the X1 Mini G3
+# and X1 Air G3 use the same register map and are expected to work.
 #
 # Documentation, wiring diagram and troubleshooting:
-#   https://github.com/benjaminvdb/solax-esphome
+#   https://github.com/benjaminvdb/esphome-solax-x1-boost
 # Register addresses come from the official "SolaX Power X1-BOOST Single
 # phase inverter Modbus-RTU comms protocol V1.0".
 
@@ -22,7 +23,7 @@ esphome:
   # reuse_previous_range and OTA encryption need ESPHome 2026.9.0 or newer.
   min_version: 2026.9.0
   project:
-    name: benjaminvdb.solax-esphome
+    name: benjaminvdb.esphome-solax-x1-boost
     version: "1.0.0"
 
 esp8266:

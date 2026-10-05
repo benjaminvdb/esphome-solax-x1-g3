@@ -3,7 +3,8 @@
 Source: *SolaX Power X1-BOOST Single phase inverter Modbus-RTU comms protocol V1.0
 (public version)*, shared by the community in
 [wills106/homeassistant-solax-modbus#327](https://github.com/wills106/homeassistant-solax-modbus/discussions/327).
-It applies to the X1 Boost, X1 Mini and X1 Air, generation 3.
+The document covers the X1 Boost (generation 3). The SolaX Modbus integration uses the
+same map for the X1 Mini G3 and X1 Air G3.
 
 Communication: Modbus RTU over RS485, 9600 baud, 8 data bits, no parity, 1 stop bit,
 device address 1 by default. Response timeout 1 s; at least 1 s between requests.

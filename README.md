@@ -1,4 +1,4 @@
-# SolaX inverter → Home Assistant, with a €6 Wi-Fi board
+# SolaX X1 Boost → Home Assistant, with a €6 Wi-Fi board
 
 See what your solar panels are doing, live, in [Home Assistant](https://www.home-assistant.io/):
 power, voltage, today's and lifetime production, and any fault the inverter reports.
@@ -16,7 +16,7 @@ file, and click *Install*. Every step tells you what you should see when it work
 | **Difficulty** | Beginner. Soldering is optional (see [Build the circuit](docs/build.md)). |
 | **Time** | About 1–2 hours the first time. |
 | **Cost** | About €6–10 in parts, plus a network cable and a USB phone charger you may already have. |
-| **Works with** | SolaX **X1 Boost, X1 Mini and X1 Air, generation 3 (G3)**. See [Will it work with my inverter?](#will-it-work-with-my-inverter) |
+| **Works with** | SolaX **X1 Boost, generation 3 (G3)**. The X1 Mini G3 and X1 Air G3 are expected to work too; see [Will it work with my inverter?](#will-it-work-with-my-inverter) |
 
 ## What you'll get in Home Assistant
 
@@ -60,13 +60,18 @@ choices in the configuration, and [Glossary](docs/glossary.md) explains every te
 
 ## Will it work with my inverter?
 
-- **Yes:** SolaX X1 Boost G3, X1 Mini G3 and X1 Air G3. These share one register map (the
-  list of addresses where each value lives). The serial number of an X1 Boost G3 usually
-  starts with `XB3`, `XAU`, `XBE` or `XBU`, and an X1 Mini G3 with `XM3`.
-- **Tested on:** X1 Boost G3 (`XB33…`), ESPHome 2026.9.1, Home Assistant 2026.9.
+- **Tested:** SolaX **X1 Boost G3** (serial number `XB33…`), with ESPHome 2026.9.1 and
+  Home Assistant 2026.9. The serial number of an X1 Boost G3 usually starts with `XB3`,
+  `XAU`, `XBE` or `XBU`.
+- **Expected to work, not tested yet:** **X1 Mini G3** (serial `XM3…`) and **X1 Air G3**.
+  The [SolaX Modbus integration](https://github.com/wills106/homeassistant-solax-modbus)
+  reads all three with the same register map (the list of addresses where each value
+  lives), and its community documents them together. Tried it on one of these? Please
+  [tell us](https://github.com/benjaminvdb/esphome-solax-x1-boost/issues/new/choose) whether
+  it worked, so this list can grow.
 - **No:** generation 4 inverters (`XB4…` and similar) use different addresses. Hybrid
-  (battery) inverters, the X3 three-phase range, and the X1 Mini **G2** with the older
-  SolaX protocol aren't covered either. For those, see the
+  (battery) inverters, the X3 three-phase range, and inverters whose firmware doesn't offer
+  Modbus (they only speak SolaX's own protocol) aren't covered either. For those, see the
   [SolaX Modbus integration](https://github.com/wills106/homeassistant-solax-modbus) or
   [syssi/esphome-solax-x1-mini](https://github.com/syssi/esphome-solax-x1-mini).
 
