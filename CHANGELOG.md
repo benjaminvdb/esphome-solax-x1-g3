@@ -1,9 +1,11 @@
-# Changelog
+# 📝 Changelog
 
-## 1.0.0 — 2026-10-05
+## 🚀 1.0.0 — 2026-10-05
 
 First release in this repository. Compared to the
-[2022 configuration](https://github.com/aiolos/ESPHome-config/blob/main/modbus-solax.yaml):
+[2022 configuration](https://github.com/aiolos/ESPHome-config/blob/main/modbus-solax.yaml),
+which @benjaminvdb wrote and contributed to aiolos/ESPHome-config
+([pull request #2](https://github.com/aiolos/ESPHome-config/pull/2)):
 
 - **Fixed:** Production Total and Production Today are read as 32-bit values
   (`U_DWORD_R`). Before, the total fell back to 0 after 6,553.5 kWh.

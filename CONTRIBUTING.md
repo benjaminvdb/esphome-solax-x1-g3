@@ -1,4 +1,4 @@
-# Contributing
+# 🤝 Contributing
 
 Thanks for helping! Every kind of contribution is welcome, including "this step confused me".
 

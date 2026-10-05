@@ -1,4 +1,4 @@
-# Glossary
+# 📖 Glossary
 
 Every technical word used in this project, in plain language.
 

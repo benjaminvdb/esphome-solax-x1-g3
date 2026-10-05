@@ -1,4 +1,4 @@
-# Register reference
+# 📑 Register reference
 
 Source: *SolaX Power X1-BOOST Single phase inverter Modbus-RTU comms protocol V1.0
 (public version)*, shared by the community in
@@ -9,7 +9,7 @@ same map for the X1 Mini G3 and X1 Air G3.
 Communication: Modbus RTU over RS485, 9600 baud, 8 data bits, no parity, 1 stop bit,
 device address 1 by default. Response timeout 1 s; at least 1 s between requests.
 
-## Input registers (function code 0x04), used by this project
+## 📥 Input registers used by this project (function code 0x04)
 
 | Register | Name | Unit | Type | Sensor |
 |---|---|---|---|---|
@@ -29,7 +29,7 @@ device address 1 by default. Response timeout 1 s; at least 1 s between requests
 | 0x425 / 0x426 | YieldToday (low / high) | 0.1 kWh | uint32, low word first | Production Today |
 | 0x427 / 0x428 | Inverter_FaultMessage (low / high) | bit flags | uint32, low word first | Fault |
 
-## Other documented input registers
+## 📋 Other documented input registers
 
 | Register | Name | Unit |
 |---|---|---|
@@ -45,7 +45,7 @@ device address 1 by default. Response timeout 1 s; at least 1 s between requests
 
 All other registers between 0x400 and 0x434 are marked *reserved*.
 
-## Holding registers (function code 0x03)
+## 🔖 Holding registers (function code 0x03)
 
 | Register | Name | Type |
 |---|---|---|
@@ -53,7 +53,7 @@ All other registers between 0x400 and 0x434 are marked *reserved*.
 | 0x307–0x30D | FactoryName | 14 characters |
 | 0x30E–0x314 | ModuleName | 14 characters |
 
-## Run Mode values
+## 🚦 Run Mode values
 
 | Value | Mode |
 |---|---|
@@ -66,7 +66,7 @@ All other registers between 0x400 and 0x434 are marked *reserved*.
 The configuration also names values 5–10 (from SolaX's hybrid inverters) in case newer
 firmware uses them.
 
-## Fault bits (0x427 = bits 0–15, 0x428 = bits 16–31)
+## 🚨 Fault bits (0x427 = bits 0–15, 0x428 = bits 16–31)
 
 | Bit | Fault | Bit | Fault |
 |---|---|---|---|
@@ -87,7 +87,7 @@ firmware uses them.
 | 14 | *reserved* | | |
 | 15 | EarthFault | | |
 
-## RS485/Meter port (RJ45)
+## 🔌 RS485/Meter port (RJ45)
 
 | Pin | Signal |
 |---|---|
